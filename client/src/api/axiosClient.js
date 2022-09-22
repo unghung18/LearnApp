@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import jwt_decode from 'jwt-decode';
 
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api/',
+    baseURL: 'https://learn-it-app18.herokuapp.com/',
     headers: {
         'content-type': 'application/json',
     },
