@@ -1,62 +1,15 @@
-/* import { useState } from "react";
-import "./register.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-const Register = () => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState({
-        username: '',
-        email: '',
-        password: ''
-    })
-
-    const onValueChange = (e) => {
-        setUser(prev => {
-            return {
-                ...prev, [e.target.name]: e.target.value
-            }
-        })
-    }
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            await axios.post('http://localhost:8080/api/auth/register', user);
-            navigate('/login');
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    return (
-        <section className="register-container">
-            <div className="register-title"> Sign up </div>
-            <form onSubmit={handleSubmit}>
-                <label>EMAIL</label>
-                <input type="text" placeholder="Enter your email" name='email' onChange={(e) => onValueChange(e)} />
-                <label>USERNAME</label>
-                <input type="text" placeholder="Enter your username" name='username' onChange={(e) => onValueChange(e)} />
-                <label>PASSWORD</label>
-                <input type="password" placeholder="Enter your password" name='password' onChange={(e) => onValueChange(e)} />
-                <button type="submit"> Create account </button>
-            </form>
-        </section>
-
-    );
-}
-
-export default Register; */
-
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AlertMessage from '../Alert/Alert';
 import api from '../../api/api';
 import background from '../../assets/backgroundAuth.jpg';
 import axios from 'axios';
 
 const RegisterForm = () => {
+
+    const auth = localStorage.getItem('currentUser');
 
     const [user, setUser] = useState({
         username: '',
@@ -93,6 +46,12 @@ const RegisterForm = () => {
             }
         }
     }
+
+    useEffect(() => {
+        if (auth) {
+            navigate('/');
+        }
+    }, []);
 
     return (
         <>

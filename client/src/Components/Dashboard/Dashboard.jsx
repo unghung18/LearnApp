@@ -51,6 +51,12 @@ const Dashboard = () => {
     getPosts();
   }, []);
 
+  useEffect(() => {
+    if (!auth) {
+      navigate('/login')
+    }
+  }, []);
+
   let body = null
 
   if (postsLoading) {
@@ -110,7 +116,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {auth ?
+      {auth &&
         <>
           {body}
           <AddModal showAddModal={showAddModal} setShowAddModal={setShowAddModal} setShowToast={setShowToast} />
@@ -129,25 +135,6 @@ const Dashboard = () => {
             </Toast.Body>
           </Toast>
           }
-        </>
-        :
-        <>
-          <div className='d-flex justify-content-center align-items-center vw-100 vh-100'>
-            <Button
-              variant='secondary'
-              className='font-weight-bolder text-white'
-              onClick={() => navigate('/login')}
-            >
-              <img
-                src={logoutIcon}
-                alt='logoutIcon'
-                width='32'
-                height='32'
-                className='mr-2'
-              />
-              Sign in to use the app
-            </Button>
-          </div>
         </>
       }
     </>

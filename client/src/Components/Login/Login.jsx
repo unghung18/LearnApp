@@ -1,13 +1,14 @@
-
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AlertMessage from '../Alert/Alert';
 import api from '../../api/api';
 import background from '../../assets/backgroundAuth.jpg';
 
 const LoginForm = () => {
+
+    const auth = localStorage.getItem('currentUser');
 
     const [user, setUser] = useState({
         username: '',
@@ -34,6 +35,12 @@ const LoginForm = () => {
             setTimeout(() => setAlert(null), 5000)
         }
     }
+
+    useEffect(() => {
+        if (auth) {
+            navigate('/');
+        }
+    }, []);
 
     return (
         <>
