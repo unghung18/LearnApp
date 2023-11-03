@@ -36,7 +36,7 @@ const NavbarMenu = () => {
           height='32'
           className='mr-2'
         />
-        ToDoApp
+        Task App
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
